@@ -10,8 +10,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="ezhouse-icon.jpg">
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -31,7 +32,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Be Vietnam Pro', 'Inter', sans-serif;
         }
 
         body {
@@ -89,11 +90,28 @@
             text-decoration: none;
             color: var(--gray);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
 
         .nav-link:hover {
             color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .btn-download-nav {
@@ -335,8 +353,16 @@
         .footer-links ul a {
             color: #94a3b8;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links ul a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
         }
 
         .footer-links ul a:hover {
@@ -464,7 +490,7 @@
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
-                <i class="fa-solid fa-house-chimney"></i>
+                <img src="ezhouse-icon.jpg" alt="Ez House Logo" style="width: 36px; height: 36px; border-radius: 8px; object-fit: cover; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.15);">
                 Ez<span>House</span>
             </a>
             <ul class="nav-menu">
@@ -553,7 +579,8 @@
         <div class="footer-container">
             <div class="footer-info">
                 <a href="#" class="footer-logo">
-                    <i class="fa-solid fa-house-chimney"></i> Ez<span>House</span>
+                    <img src="ezhouse-icon.jpg" alt="Ez House Logo" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.15);">
+                    Ez<span>House</span>
                 </a>
                 <p style="margin-top: 15px;">Hệ thống số hóa giúp tối ưu hóa hiệu năng kinh doanh, quản lý và vận hành
                     bất động sản cho thuê chuyên nghiệp.</p>
