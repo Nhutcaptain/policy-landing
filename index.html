@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ez House - Hệ thống quản lý vận hành & kinh doanh bất động sản cho thuê</title>
+    <meta name="description"
+        content="Nền tảng tối ưu hiệu suất vận hành tòa nhà, căn hộ dịch vụ và phòng trọ chuyên nghiệp cho nhân viên và cộng tác viên.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-hover: #047857;
+            --primary-light: #ecfdf5;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 10px 30px -10px rgba(5, 150, 105, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .btn-download-nav {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .btn-download-nav:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 24px 100px;
+            background: radial-gradient(circle at 80% 20%, rgba(5, 150, 105, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(5, 150, 105, 0.03) 0%, transparent 50%);
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .badge-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            border: 1px solid rgba(5, 150, 105, 0.15);
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 750px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .btn-store {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-store:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            background-color: #1e293b;
+        }
+
+        .btn-store i {
+            font-size: 32px;
+        }
+
+        .btn-store .text-small {
+            font-size: 11px;
+            opacity: 0.7;
+            text-transform: uppercase;
+        }
+
+        .btn-store .text-large {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -15px rgba(5, 150, 105, 0.12);
+            border-color: rgba(5, 150, 105, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .feature-card ul {
+            list-style: none;
+            color: var(--gray);
+        }
+
+        .feature-card ul li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feature-card ul li i {
+            color: var(--primary);
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: #94a3b8;
+            padding: 80px 24px 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 40px;
+        }
+
+        .footer-info {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            color: var(--white);
+            font-size: 26px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary);
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links ul a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-links ul a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        /* Modal Privacy Policy CSS */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close-btn {
+            position: sticky;
+            top: -20px;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+            background: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: var(--primary);
+        }
+
+        .privacy-body h2 {
+            font-size: 28px;
+            color: var(--dark);
+            margin-bottom: 24px;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 12px;
+        }
+
+        .privacy-body h3 {
+            font-size: 18px;
+            color: var(--primary);
+            margin: 24px 0 12px;
+        }
+
+        .privacy-body p,
+        .privacy-body li {
+            font-size: 15px;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+
+        .privacy-body ul {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .footer-container {
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Nav Bar -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-house-chimney"></i>
+                Ez<span>House</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#features" class="nav-link">Tính năng</a></li>
+                <li><a onclick="openPrivacy()" class="nav-link">Chính sách bảo mật</a></li>
+                <li><a href="#download" class="btn-download-nav">Tải ứng dụng</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="badge-hero">
+            <i class="fa-solid fa-circle-check"></i> Ứng dụng quản lý vận hành chính thức
+        </div>
+        <h1>Giải pháp số hóa vận hành <span>Bất động sản cho thuê</span></h1>
+        <p>Tối ưu hóa quy trình kinh doanh, phê duyệt hợp đồng, quản lý phòng trống và chấm công hiệu quả dành cho Nhân
+            viên, Cộng tác viên và Ban quản lý Ez House.</p>
+        <div class="hero-buttons" id="download">
+            <a href="#" class="btn-store">
+                <i class="fa-brands fa-apple"></i>
+                <div>
+                    <div class="text-small">Tải từ</div>
+                    <div class="text-large">App Store</div>
+                </div>
+            </a>
+            <a href="#" class="btn-store">
+                <i class="fa-brands fa-google-play"></i>
+                <div>
+                    <div class="text-small">Tải từ</div>
+                    <div class="text-large">Google Play</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2>Chức Năng Dành Cho Các Bộ Phận</h2>
+            <p>Thiết kế may đo chuyên nghiệp theo từng vai trò nghiệp vụ thực tế trong doanh nghiệp</p>
+        </div>
+        <div class="feature-grid">
+            <!-- Collaborators Card -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+                <h3>Cộng tác viên (CTV)</h3>
+                <ul>
+                    <li><i class="fa-solid fa-circle-play"></i> Cập nhật giỏ hàng dự án và phòng trống thời gian thực.
+                    </li>
+                    <li><i class="fa-solid fa-circle-play"></i> Đăng tin phòng trống lên hệ thống nhanh chóng.</li>
+                    <li><i class="fa-solid fa-circle-play"></i> Gửi thông tin khách hàng (Pass khách) để nhân viên hỗ
+                        trợ.</li>
+                </ul>
+            </div>
+            <!-- Employees Card -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <h3>Nhân viên kinh doanh</h3>
+                <ul>
+                    <li><i class="fa-solid fa-circle-play"></i> Quản lý giỏ hàng căn hộ dịch vụ và dự án cho thuê.</li>
+                    <li><i class="fa-solid fa-circle-play"></i> Nhập và lưu trữ hợp đồng thuê nhà điện tử.</li>
+                    <li><i class="fa-solid fa-circle-play"></i> Chấm công định vị GPS chính xác tại khu vực làm việc.
+                    </li>
+                    <li><i class="fa-solid fa-circle-play"></i> Theo dõi hoa hồng, doanh số cá nhân & bảng xếp hạng thi
+                        đua.</li>
+                </ul>
+            </div>
+            <!-- Management Card -->
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-briefcase"></i></div>
+                <h3>Ban quản lý & Giám đốc</h3>
+                <ul>
+                    <li><i class="fa-solid fa-circle-play"></i> Phê duyệt hợp đồng thuê phòng của nhân viên tức thời.
+                    </li>
+                    <li><i class="fa-solid fa-circle-play"></i> Giám sát báo cáo doanh thu chi nhánh và khu vực.</li>
+                    <li><i class="fa-solid fa-circle-play"></i> Phân bổ công việc và quản lý lịch làm việc đội nhóm.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <a href="#" class="footer-logo">
+                    <i class="fa-solid fa-house-chimney"></i> Ez<span>House</span>
+                </a>
+                <p style="margin-top: 15px;">Hệ thống số hóa giúp tối ưu hóa hiệu năng kinh doanh, quản lý và vận hành
+                    bất động sản cho thuê chuyên nghiệp.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hỗ trợ</h4>
+                <ul>
+                    <li><a href="mailto:admin@ezhouse.vn"><i class="fa-solid fa-envelope"></i> admin@ezhouse.vn</a></li>
+                    <li><a onclick="openPrivacy()"><i class="fa-solid fa-shield-halved"></i> Chính sách bảo mật</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ez House. Tất cả quyền được bảo lưu.</p>
+            <p>Phát triển bởi đội ngũ kỹ thuật Ez House</p>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePrivacy()">&times;</span>
+            <div class="privacy-body">
+                <h2>CHÍNH SÁCH BẢO MẬT ỨNG DỤNG EZ HOUSE</h2>
+                <p><strong>Cập nhật lần cuối: 29/05/2026</strong></p>
+                <p>Chào mừng bạn đến với <strong>Ez House</strong>! Chúng tôi cam kết bảo vệ thông tin cá nhân và quyền
+                    riêng tư của bạn. Chính sách bảo mật này giải thích cách chúng tôi thu thập, sử dụng, lưu trữ và bảo
+                    vệ thông tin của bạn khi bạn sử dụng ứng dụng di động Ez House.</p>
+                <p>Bằng việc tải xuống, cài đặt và sử dụng ứng dụng Ez House, bạn đồng ý với các điều khoản được mô tả
+                    trong Chính sách bảo mật này.</p>
+
+                <h3>1. Thông tin chúng tôi thu thập</h3>
+                <p>Để cung cấp các dịch vụ quản lý vận hành tòa nhà và bất động sản cho thuê hiệu quả, chúng tôi thu
+                    thập các nhóm thông tin sau:</p>
+                <ul>
+                    <li><strong>Thông tin tài khoản:</strong> Khi đăng ký, đăng nhập hoặc được cấp tài khoản trên hệ
+                        thống, ứng dụng sẽ ghi nhận: Họ và tên, Số điện thoại, Địa chỉ Email, và vai trò nhân sự của bạn
+                        trong hệ thống.</li>
+                    <li><strong>Thông tin chấm công (Vị trí GPS):</strong> Để phục vụ chức năng chấm công của nhân sự,
+                        ứng dụng sẽ yêu cầu quyền truy cập vị trí địa lý (GPS). Thông tin này chỉ đối chiếu tại thời
+                        điểm bạn nhấn thực hiện chấm công tại khu vực làm việc được chỉ định.</li>
+                    <li><strong>Quyền truy cập hình ảnh & Máy ảnh:</strong> Để hỗ trợ các tính năng báo cáo hiện trường,
+                        đăng tin phòng trống, quản lý cơ sở vật chất, ứng dụng yêu cầu quyền truy cập thư viện ảnh hoặc
+                        máy ảnh để tải lên hình ảnh phòng trọ.</li>
+                    <li><strong>Thông tin định danh thiết bị (Identifiers):</strong> Chúng tôi ghi nhận Device ID/Push
+                        Token nhằm mục đích gửi các thông báo đẩy (Push Notification) thời gian thực về tiến độ công
+                        việc hoặc phê duyệt.</li>
+                </ul>
+
+                <h3>2. Cách chúng tôi sử dụng thông tin</h3>
+                <p>Thông tin được thu thập chỉ sử dụng cho các mục đích nội bộ và vận hành cốt lõi sau:</p>
+                <ul>
+                    <li>Xác thực danh tính và phân quyền truy cập chính xác theo vai trò nghiệp vụ của từng người dùng
+                        trong hệ thống.</li>
+                    <li>Cung cấp các công cụ chấm công, điểm danh chính xác tại nơi làm việc.</li>
+                    <li>Lưu trữ, cập nhật thông tin dự án, danh sách phòng trống, và hồ sơ hợp đồng thuê nhà.</li>
+                    <li>Gửi thông báo đẩy tức thời khi có cập nhật công việc, sự cố hoặc phê duyệt từ cấp quản lý.</li>
+                </ul>
+
+                <h3>3. Lưu trữ và Bảo mật thông tin</h3>
+                <p>Ez House cam kết áp dụng các tiêu chuẩn công nghệ tiên tiến nhất để bảo vệ dữ liệu của bạn:</p>
+                <ul>
+                    <li>Mọi luồng dữ liệu truyền tải giữa ứng dụng di động và máy chủ đều được mã hóa bằng giao thức bảo
+                        mật an toàn <strong>HTTPS (SSL/TLS)</strong>.</li>
+                    <li>Chúng tôi <strong>tuyệt đối KHÔNG</strong> bán, trao đổi, cho thuê hoặc chia sẻ dữ liệu cá nhân
+                        của bạn cho bất kỳ bên thứ ba nào vì mục đích quảng cáo hoặc thương mại.</li>
+                </ul>
+
+                <h3>4. Quyền của người dùng và Xóa dữ liệu</h3>
+                <p>Bạn có toàn quyền kiểm soát đối với thông tin cá nhân của mình khi sử dụng ứng dụng Ez House:</p>
+                <ul>
+                    <li>Bạn có thể tự kiểm tra và chỉnh sửa thông tin cá nhân của mình trong mục quản lý hồ sơ của ứng
+                        dụng.</li>
+                    <li>Bạn có quyền yêu cầu xóa bỏ hoàn toàn tài khoản của mình bằng chức năng <strong>Xóa tài
+                            khoản</strong> ngay trên ứng dụng, hoặc gửi email yêu cầu trực tiếp tới hòm thư:
+                        <strong>admin@ezhouse.vn</strong>. Hệ thống sẽ xóa sạch toàn bộ dữ liệu tài khoản của bạn trong
+                        vòng tối đa 7 ngày làm việc.</li>
+                </ul>
+
+                <h3>5. Thông tin liên hệ</h3>
+                <p>Nếu bạn có bất kỳ câu hỏi hoặc yêu cầu nào liên quan đến Chính sách bảo mật này, xin vui lòng liên
+                    hệ:</p>
+                <ul>
+                    <li><strong>Đơn vị quản lý:</strong> Ban quản trị hệ thống Ez House</li>
+                    <li><strong>Địa chỉ Email hỗ trợ:</strong> admin@ezhouse.vn</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script to toggle Modal -->
+    <script>
+        var modal = document.getElementById("privacyModal");
+
+        function openPrivacy() {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // disable scroll background
+        }
+
+        function closePrivacy() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // enable scroll background
+        }
+
+        // Close modal when click outside of content
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closePrivacy();
+            }
+        }
+    </script>
+</body>
+
+</html>
